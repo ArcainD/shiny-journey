@@ -24,22 +24,29 @@ print()
 
 
 def get_shop_list_by_dishes(dishes, person_count):
+    if person_count <= 0:
+        return 'Неверное количество персон'
     result = {}
     if type(dishes) == str:
-        if dishes in res.keys():
-            for ingredient in res[dishes]:
+        if dishes.capitalize() in res.keys():
+            for ingredient in res[dishes.capitalize()]:
                 result[ingredient['ingredient_name']] = \
                     {'measure': ingredient['measure'], 'quantity': (ingredient['quantity'])*person_count}
             return result
+        else:
+            return 'Блюдо отсутствует в списке'
     if type(dishes) == list:
         for _dish in dishes:
-            for ingredient in res[_dish]:
-                if ingredient['ingredient_name'] in result.keys():
-                    result[ingredient['ingredient_name']]['quantity'] += ingredient['quantity']*person_count
-                else:
-                    result[ingredient['ingredient_name']] = \
-                        {'measure': ingredient['measure'],
-                         'quantity': (ingredient['quantity']) * person_count}
+            if _dish.capitalize() in res.keys():
+                for ingredient in res[_dish.capitalize()]:
+                    if ingredient['ingredient_name'] in result.keys():
+                        result[ingredient['ingredient_name']]['quantity'] += ingredient['quantity']*person_count
+                    else:
+                        result[ingredient['ingredient_name']] = \
+                            {'measure': ingredient['measure'],
+                             'quantity': (ingredient['quantity']) * person_count}
+            else:
+                return 'Блюдо отсутствует в списке'
         return result
 
 
