@@ -19,7 +19,7 @@ with open(path, encoding='utf-8') as file:
         res[dish_name] = temp
         file.readline()
 pprint(res)
-print
+print()
 # =========case1 complete==========
 
 
