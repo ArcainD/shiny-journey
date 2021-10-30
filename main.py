@@ -20,6 +20,7 @@ with open(path, encoding='utf-8') as file:
         file.readline()
 pprint(res)
 print()
+# =========case1 complete==========
 
 
 def get_shop_list_by_dishes(dishes, person_count):
@@ -43,3 +44,43 @@ def get_shop_list_by_dishes(dishes, person_count):
 
 
 pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
+print()
+
+
+# =========case2 complete==========
+path1 = os.getcwd()
+list_files = []
+
+
+def list_create(path=path1):
+    directory = os.listdir(path)
+    list_files.append(directory[directory.index('1.txt')])
+    list_files.append(directory[directory.index('2.txt')])
+    list_files.append(directory[directory.index('3.txt')])
+    return list_files
+
+
+def merged_files(list_files):
+    list_names = []
+    for item in list_files:
+        counter = 0
+        with open(item, encoding="utf-8") as file:
+            for line in file:
+                counter += 1
+        list_names.append([item, counter])
+    list_names.sort(key=lambda z: z[1])
+    with open('result.txt', 'w', encoding="utf-8") as file_write:
+        for el in list_names:
+            with open(el[0], encoding="utf-8") as file_read:
+                file_write.write(f'{el[0]}\n')
+                file_write.write(f'{el[1]}\n')
+                for i in file_read:
+                    file_write.write(i)
+                file_write.write('\n')
+
+
+list_create()
+merged_files(list_files)
+with open('result.txt', encoding="utf-8") as f:
+    print(f.read())
+# =========case3 complete==========
