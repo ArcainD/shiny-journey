@@ -45,9 +45,9 @@ def get_shop_list_by_dishes(dishes, person_count):
 
 pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
 print()
-
-
 # =========case2 complete==========
+
+
 path1 = os.getcwd()
 list_files = []
 
